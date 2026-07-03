@@ -1,0 +1,16 @@
+name: server
+description: Minimal in-memory mock API (Dart + shelf) for the Kitchen Crew app.
+publish_to: 'none'
+version: 0.1.0
+
+environment:
+  sdk: '>=3.4.3 <4.0.0'
+
+dependencies:
+  shelf: ^1.4.1
+  shelf_router: ^1.1.4
+  contracts:
+    path: ../packages/contracts
+
+dev_dependencies:
+  lints: ^4.0.0

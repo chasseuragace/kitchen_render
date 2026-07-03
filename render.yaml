@@ -1,0 +1,17 @@
+# Render Blueprint — one-click deploy of the Kitchen Crew mock server.
+#
+# Commit this file, then in Render: New + -> Blueprint -> pick this repo.
+# Render reads this and provisions the service below automatically.
+#
+# Docs: https://render.com/docs/blueprint-spec
+services:
+  - type: web
+    name: kitchen-crew-server
+    runtime: docker
+    plan: free                 # spins down after ~15 min idle; state is in-memory so it resets
+    dockerfilePath: ./Dockerfile
+    dockerContext: .           # repo root — required for the contracts path dependency
+    healthCheckPath: /health
+    autoDeploy: true           # redeploy on every push to the tracked branch
+    # PORT is injected by Render automatically; the server reads it.
+    # Add envVars here if you later introduce config (e.g. GEOCODE_KEY).

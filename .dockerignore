@@ -1,0 +1,30 @@
+# Build context is the repo root, but the server image only needs
+# server/ + packages/contracts/. Keep the context small & the build
+# reproducible by excluding everything else.
+
+# The Flutter app is not part of the server image.
+app/
+project_activities_visualizer/
+
+# Docs / notes
+documents/
+plans/
+ux/
+*.md
+!server/README.md
+
+# Dart/Flutter generated
+**/.dart_tool/
+**/build/
+**/.packages
+**/pubspec_lock_backup
+
+# VCS / editor / OS
+.git/
+.github/
+.idea/
+.vscode/
+.claude/
+**/.DS_Store
+*.swp
+*.log

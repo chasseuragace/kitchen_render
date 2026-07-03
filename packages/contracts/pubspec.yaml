@@ -1,0 +1,9 @@
+name: contracts
+description: Shared DTOs (the API contract) used by both the Flutter app and the Dart mock server.
+publish_to: 'none'
+version: 0.1.0
+
+environment:
+  sdk: '>=3.4.3 <4.0.0'
+
+# Pure Dart, no Flutter dependency on purpose so the server can depend on it too.
