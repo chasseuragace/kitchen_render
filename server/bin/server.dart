@@ -169,6 +169,17 @@ Router _buildRouter() {
     return _json({'ok': true});
   });
 
+  // Change password while signed in (mock — passwords aren't stored, so the
+  // current password isn't actually verified; we validate the new one).
+  r.post('/auth/change-password', _auth((req, user) async {
+    final b = await _body(req);
+    final current = b['currentPassword'] as String?;
+    final next = b['newPassword'] as String?;
+    if (current == null || current.isEmpty) return _err(400, 'current password required');
+    if (next == null || next.length < 6) return _err(400, 'new password must be at least 6 characters');
+    return _json({'ok': true});
+  }));
+
   // ---- catalogue ----
   r.get('/home', (Request _) => _json(home.toJson()));
   r.get('/categories', (Request _) => _json(categories.map((c) => c.toJson()).toList()));
